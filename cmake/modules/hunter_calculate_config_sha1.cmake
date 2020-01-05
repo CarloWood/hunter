@@ -37,6 +37,7 @@ function(hunter_calculate_config_sha1 hunter_self hunter_base user_config)
       hunter_internal_error("Hunter config not exists")
     endif()
     set(__HUNTER_ALLOW_CONFIG_LOADING YES)
+    hunter_status_debug("Loading \"${user_config}\"...")
     include("${user_config}") # Use 'hunter_config'
     set(__HUNTER_ALLOW_CONFIG_LOADING NO)
   endif()
