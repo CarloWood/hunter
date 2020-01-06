@@ -46,8 +46,8 @@ function(hunter_set_config_location hunter_self result)
     endif()
   endif()
 
-  if(NOT EXISTS "${config_location}")
-    hunter_user_error("Config not found: ${config_location}")
+  if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${config_location}")
+    hunter_user_error("Config not found: ${CMAKE_CURRENT_SOURCE_DIR}/${config_location}")
   endif()
 
   set("${result}" "${config_location}" PARENT_SCOPE)

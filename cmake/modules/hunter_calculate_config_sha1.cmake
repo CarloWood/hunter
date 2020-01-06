@@ -33,12 +33,15 @@ function(hunter_calculate_config_sha1 hunter_self hunter_base user_config)
 
   if(NOT user_config STREQUAL default_config)
     # Include user_config
-    if(NOT EXISTS "${user_config}")
-      hunter_internal_error("Hunter config not exists")
+    if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${user_config}")
+       hunter_internal_error("Hunter config \"${CMAKE_CURRENT_SOURCE_DIR}/${user_config}\" does not exist.")
     endif()
     set(__HUNTER_ALLOW_CONFIG_LOADING YES)
     hunter_status_debug("Loading \"${user_config}\"...")
-    include("${user_config}") # Use 'hunter_config'
+    # include is relative to CMAKE_CURRENT_SOURCE_DIR, but add it
+    # anyway in order to make sure that user_config isn't misinterpreted
+    # as a module.
+    include("${CMAKE_CURRENT_SOURCE_DIR}/${user_config}") # Use 'hunter_config'
     set(__HUNTER_ALLOW_CONFIG_LOADING NO)
   endif()
 
