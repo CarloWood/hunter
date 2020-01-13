@@ -46,8 +46,9 @@ function(hunter_set_config_location hunter_self result)
     endif()
   endif()
 
-  if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${config_location}")
-    hunter_user_error("Config not found: ${CMAKE_CURRENT_SOURCE_DIR}/${config_location}")
+  get_filename_component( abs_config_location ${config_location} ABSOLUTE )
+  if(NOT EXISTS "${abs_config_location}")
+    hunter_user_error("Config not found: ${abs_config_location}")
   endif()
 
   set("${result}" "${config_location}" PARENT_SCOPE)
