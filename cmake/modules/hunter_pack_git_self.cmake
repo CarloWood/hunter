@@ -29,7 +29,7 @@ function(hunter_pack_git_self)
   set(cmd "${git_executable}" rev-parse --show-toplevel)
   execute_process(
       COMMAND ${cmd}
-      WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+      WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
       RESULT_VARIABLE result
       OUTPUT_VARIABLE output
       ERROR_VARIABLE error

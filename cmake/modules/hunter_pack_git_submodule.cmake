@@ -46,7 +46,7 @@ function(hunter_pack_git_submodule)
 
   hunter_get_git_executable(git_executable)
 
-  set(submodule_root "${PROJECT_SOURCE_DIR}/${x_GIT_SUBMODULE}")
+  set(submodule_root "${CMAKE_SOURCE_DIR}/${x_GIT_SUBMODULE}")
   if(NOT EXISTS "${submodule_root}")
     hunter_user_error(
       "Requested GIT_SUBMODULE \"${submodule_root}\" does not exist."
